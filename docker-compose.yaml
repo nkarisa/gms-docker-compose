@@ -36,7 +36,7 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - gms-mysql-data:/var/lib/mysql
     networks:
       - ezesha
   
@@ -58,8 +58,9 @@ volumes:
   gms-redis-data:
     name: gms-redis-data
     external: true
-  mysql_data:
-    name: mysql_data
+  gms-mysql-data:
+    name: gms-mysql-data
+    external: true
 
 networks:
   ezesha:
