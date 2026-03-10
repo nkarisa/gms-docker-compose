@@ -1,20 +1,20 @@
 name: "gms-app"
 services:
-  web-server:
-    image: nkarisa/safina-app:latest
-    container_name: "${COMPOSE_PROJECT_NAME}"
-    restart: unless-stopped
-    volumes:
-      - .:/var/www/html
-    env_file:
-      - .env.docker
-    ports:
-      - "8075:8080"
-    depends_on:
-      - redis-session-cache
-      - mysql-server
-    networks:
-      - ezesha
+  # web-server:
+  #   image: nkarisa/safina-app:latest
+  #   container_name: "${COMPOSE_PROJECT_NAME}"
+  #   restart: unless-stopped
+  #   volumes:
+  #     - .:/var/www/html
+  #   env_file:
+  #     - .env.docker
+  #   ports:
+  #     - "8075:8080"
+  #   depends_on:
+  #     - redis-session-cache
+  #     - mysql-server
+  #   networks:
+  #     - ezesha
 
   redis-session-cache:
     image: redis:7.2.10-alpine
