@@ -1,7 +1,7 @@
 name: "gms-app"
 services:
   web-server:
-    image: ghcr.io/nkarisa/gms:sha-1a6c722
+    image: ghcr.io/nkarisa/gms:latest
     container_name: "${COMPOSE_PROJECT_NAME}"
     restart: unless-stopped
     volumes:
@@ -39,7 +39,7 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - gms-mysql-data:/var/lib/mysql
     networks:
       - ezesha
   
@@ -62,8 +62,9 @@ volumes:
   gms-redis-data:
     name: gms-redis-data
     external: true
-  mysql_data:
-    name: mysql_data
+  gms-mysql-data:
+    name: gms-mysql-data
+    external: true
 
 networks:
   ezesha:
