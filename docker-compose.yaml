@@ -1,7 +1,7 @@
 name: "gms-app"
 services:
   web-server:
-    image: ghcr.io/nkarisa/gms:latest
+    image: nkarisa/safina-app:latest
     container_name: "${COMPOSE_PROJECT_NAME}"
     restart: unless-stopped
     volumes:
