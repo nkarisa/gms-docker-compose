@@ -1,14 +1,12 @@
 name: "gms-app"
 services:
   web-server:
-    image: ghcr.io/nkarisa/gms:sha-a63e822
+    image: ghcr.io/nkarisa/gms:sha-b8fa136
     restart: unless-stopped
-    # volumes:
-    #   - .:/var/www/html
     env_file:
       - .env.docker
     ports:
-      - "8075:8080"
+      - "${APP_PORT:-8030}:8080"
     depends_on:
       - redis-session-cache
       - mysql-server
@@ -28,6 +26,7 @@ services:
   mysql-server:
     image: mysql:8.0
     restart: always
+    command: --log-bin-trust-function-creators=1
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
       MYSQL_DATABASE: ${MYSQL_DATABASE:-gms_db}
@@ -39,6 +38,21 @@ services:
       - gms-mysql-data:/var/lib/mysql
     networks:
       - ezesha
+
+  # mysql-server:
+  #   image: mysql:8.0
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
+  #     MYSQL_DATABASE: ${MYSQL_DATABASE:-gms_db}
+  #     MYSQL_USER: ${MYSQL_USER:-gms_user}
+  #     MYSQL_PASSWORD: ${MYSQL_PASSWORD:-gms_pass}
+  #   ports:
+  #     - "3307:3306"
+  #   volumes:
+  #     - gms-mysql-data:/var/lib/mysql
+  #   networks:
+  #     - ezesha
   
   # localstack:
   #   image: localstack/localstack
