@@ -1,7 +1,7 @@
 name: "gms-app"
 services:
   web-server:
-    image: ghcr.io/nkarisa/gms:sha-30b6e94
+    image: ghcr.io/nkarisa/gms:sha-a63e822
     restart: unless-stopped
     # volumes:
     #   - .:/var/www/html
