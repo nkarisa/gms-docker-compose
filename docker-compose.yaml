@@ -1,7 +1,8 @@
 name: "gms-app"
 services:
   web-server:
-    image: ghcr.io/nkarisa/gms:sha-b8fa136
+    image: ghcr.io/nkarisa/gms:latest
+    pull_policy: always
     restart: unless-stopped
     env_file:
       - .env.docker
