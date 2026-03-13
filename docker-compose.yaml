@@ -40,34 +40,15 @@ services:
     networks:
       - ezesha
 
-  # mysql-server:
-  #   image: mysql:8.0
-  #   restart: always
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
-  #     MYSQL_DATABASE: ${MYSQL_DATABASE:-gms_db}
-  #     MYSQL_USER: ${MYSQL_USER:-gms_user}
-  #     MYSQL_PASSWORD: ${MYSQL_PASSWORD:-gms_pass}
-  #   ports:
-  #     - "3307:3306"
-  #   volumes:
-  #     - gms-mysql-data:/var/lib/mysql
-  #   networks:
-  #     - ezesha
-  
-  # localstack:
-  #   image: localstack/localstack
-  #   ports:
-  #     - "127.0.0.1:4566:4566"            # LocalStack Gateway
-  #     - "127.0.0.1:4510-4559:4510-4559"  # external services port range
-  #   environment:
-  #     # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
-  #     - DEBUG=${DEBUG:-0}
-  #     - LAMBDA_PREWARM_CONTAINERS=1
-  #   volumes:
-  #     - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
-  #     - "/var/run/docker.sock:/var/run/docker.sock"
-  #     - "./entrypoint.d:/etc/localstack/init/ready.d"
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - "8081:8080"
+    networks:
+      - ezesha
+    depends_on:
+      - mysql-server
 
 volumes:
   gms-redis-data:
